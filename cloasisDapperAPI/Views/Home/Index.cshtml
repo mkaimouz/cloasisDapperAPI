@@ -1,0 +1,473 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div>
+        <h1 class="display-4">Cloasis API Services</h1>
+        <p>Services available for cloasis WebApp.</p>
+        <p>The use of POSTMAN is recommended to test POST, PUT and DELETE Requests.</p>
+    </div>
+
+<div>
+    <table style="width:100%; margin=500px;">
+        <tr>
+            <th style="column-width:250px;padding-left:50px;">Service Call</th>
+            <th>Url Format</th>
+            <th>Service Description</th>
+        </tr>
+        <tr>
+            <td><a asp-controller="Student" asp-action="GetStudents"> GetStudents() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Student/GetStudents</td>
+            <td><p>Returns a JSON of all the students in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchStudent", new { searchTerm = "201601250"})"> FetchStudent(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Student/FetchStudent/{searchTerm}</td>
+            <td><p>Returns a JSON of the student/students that has/have a property that matches the search term (StudentId, Name, Email, Year of Birth)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Student" asp-action="CreateStudent"> CreateStudent(Student student) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Student/CreateStudent</td>
+            <td><p>Used for a POST request against the database to add a student to the students table; student is taken from the Body of the request (possible to pass TEAM_ID as part of the body).</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditStudent", new { StudentId = "201601250"})"> EditStudent(Student student, string studentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Student/EditStudent/{id}</td>
+            <td><p>Used for a PUT request against the database to edit a student in the students table; student is taken from the Body of the request (possible to pass TEAM_ID as part of the body).</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteStudent", new { StudentId = "201601250"})"> DeleteStudent(string studentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Student/DeleteStudent/{id}</td>
+            <td><p>Used for a DELETE request against the database to delete the student with the specfied studentId</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Course" asp-action="GetCourses"> GetCourses() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/GetCourses</td>
+            <td><p>Returns a JSON of all the courses in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCourseById", new { id = 61})"> GetCourseById(int id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/GetCourseById/{id}</td>
+            <td><p>Returns a JSON of the course that matches the provided ID</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchCourse", new { searchTerm = 61})"> FetchCourse(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/FetchCourse/{searchTerm}</td>
+            <td><p>Returns a JSON of the course/coursess that has/have a property that matches the search term (Course_Id, Course_Name, Course_Code, Credits)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Course" asp-action="CreateCourse"> CreateCourse(Course course) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/CreateCourse</td>
+            <td><p>Used for a POST request against the database to add a course to the courses table; course is taken from the Body of the request</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditCourse", new { CourseId = 61})"> EditCourse(Course course, int courseId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/EditCourse/{Courseid}</td>
+            <td><p>Used for a PUT request against the database to edit a course in the courses table; course is taken from the Body of the request</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteCourse", new { CourseId = 62})"> DeleteCourse(int courseId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Course/DeleteCourse/{CourseId}</td>
+            <td><p>Used for a DELETE request against the database to delete the course with the specfied courseId</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Professor" asp-action="GetProfessors"> GetProfessors() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/GetProfessors</td>
+            <td><p>Returns a JSON of all the professors in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchProfessor", new { searchTerm = 505010})"> FetchProfessor(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/FetchProfessor/{searchTerm}</td>
+            <td><p>Returns a JSON of the professor/professors that has/have a property that matches the search term (Name, Email, Gender, Office, Extension)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Professor" asp-action="CreateProfessor"> CreateProfessor(Professor professor) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/CreateProfessor</td>
+            <td><p>Used for a POST request against the database to add a professor to the professors table; professor is taken from the Body of the request</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditProfessor", new { professorId = 505001})"> EditProfessor(Professor professor, int professorId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/EditProfessor/{professorId}</td>
+            <td><p>Used for a PUT request against the database to edit a professor in the professors table; professor is taken from the Body of the request</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteProfessor", new { professorId = 505001})"> DeleteProfessor(int professorId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/DeleteProfessor/{professorId}</td>
+            <td><p>Used for a DELETE request against the database to delete the professor with the specfied professor=Id</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Class" asp-action="GetClasses"> GetClasses() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Class/GetClasses</td>
+            <td><p>Returns a detailed JSON of all the classes in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchClass", new { searchTerm = 22123})"> FetchClass(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Class/FetchClass/{searchTerm}</td>
+            <td><p>Returns a detailed JSON of the class/classes that has/have a property that matches the search term (CRN, Teaching Semester, Room, Course Name, Course Code, Professor)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Class" asp-action="CreateClass"> CreateClass(Class class) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Professor/CreateProfessor</td>
+            <td><p>Used for a POST request against the database to add a class to the classes table; class is taken from the Body of the request and has the following attributes (CRN, Professor_Name, Course_Name, [Section_Num] optional and automatically figured out if not provided, Teaching_Semester, progress, room)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditClass", new { CRN = "22123"})"> EditClass(Class cls, string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Class/EditClass/{CRN}</td>
+            <td><p>Used for a PUT request against the database to edit a class in the classes table; class is taken from the Body of the request and has the following attributes (Professor_Name, Course_Name, [Section_Num] Not advised to be edited, Teaching_Semester, progress, room)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteClass", new { CRN = 22123})"> DeleteClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Class/DeleteClass/{CRN}</td>
+            <td><p>Used for a DELETE request against the database to delete the class with the specfied CRN</p></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3">
+                <hr />
+                <h4>Please note that the Registration Calls are designed with safety in mind. They also return good Log messages that might be of interest for you to use.</h4>
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Registration" asp-action="GetRegistrations"> GetRegistrations() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/GetRegistrations</td>
+            <td><p>Returns a JSON of all the enteries in the registration table.</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetStudentsInClass", new { CRNorCLASSNAME = "22041"})"> GetStudentsInClass(string CRNorCLASSNAME) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/GetStudentsInClass/{CRNorCLASSNAME}</td>
+            <td><p>Returns a JSON of all the students in the class with a name or CRN that matches the provided input in the URL. (CRN, CLASSNAME)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetStudentsNotInClass", new { CRN = "22041"})"> GetStudentsNotInClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/GetStudentsNotInClass/{CRN}</td>
+            <td><p>Returns a JSON of all the students NOT registered in the provided class nor the other sections of that class. (Safe students to be registered in the provided class)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetClassesOfStudent", new { IDorName = "201807968"})"> GetClassesOfStudent(string IDorName) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/GetClassesOfStudent/{IDorName}</td>
+            <td><p>Returns a JSON of all the classes that a student with a name or ID that matches the provided input in the URL is registered in. (StudentID, StudentName)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("RegisterStudent", new { student_Id = "201807968"})"> RegisterStudent(string student_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/RegisterStudent/{student_Id}</td>
+            <td><p>Used for a POST request against the database to register a student with the provided student_Id in the URL, in a class/classes. The body of the request that is expected is a JSON of the following format: { "data":[{Strings_Of_CRNS_SEPERATED_BY_COMMA}] } </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DropStudent", new { student_Id = "201807968"})"> DropStudent(string student_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Registration/DropStudent/{student_Id}</td>
+            <td><p>Used for a DELETE request against the database to drop a student with the provided student_Id in the URL, from a class/classes. The body of the request that is expected is a JSON of the following format: { "data":[{Strings_Of_CRNS_SEPERATED_BY_COMMA}] } </p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Lecture" asp-action="GetLectures"> GetLectures() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetLectures</td>
+            <td><p>Returns a JSON object for all entries in the Lecture table (All Lectures)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetLectureOfId", new { Lecture_Id = 486})"> GetLectureOfId(int Lecture_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetLectureOfId/{Lecture_Id}</td>
+            <td><p>Returns a JSON of the lecture that has a Lecture_Id that matches  the provided one in the URL </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetLecturesOfClass", new { CRN = "22041"})"> GetLecturesOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetLecturesOfClass/{CRN}</td>
+            <td><p>Returns a JSON that has all the lectures that have been given in the provided class (with a matching CRN) so far </p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Lecture" asp-action="GetExams"> GetExams() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetExams</td>
+            <td><p>Returns a JSON of all the exam lectures that were held so far </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetExamsOfClass", new { CRN = "22041"})"> GetExamsOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetExamsOfClass/{CRN}</td>
+            <td><p>Returns a JSON that has all the exam lectures in a class that were held so far </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetExamsDetailsOfClass", new { CRN = "22041"})"> GetExamsDetailsOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/GetExamsDetailsOfClass/{CRN}</td>
+            <td><p>Returns a detailed JSON that has all the exam lectures - similiar to the previous service call - with details of (Lecture Info, CLO Info, Course Name, Course Code, Section Number) </p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Lecture" asp-action="CreateLecture"> CreateLecture(Lecture lecture) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/CreateLecture</td>
+            <td><p>Used for a POST request to create a lecture in the database and expects the properties (CRN, Duration (float representing number of hours), Room, Start_Time(e.g. "2020-04-04T12:30"), Title, Lecture_Date (e.g. "2020-04-04"))</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("CreateLectureWithCLO", new { CLO_ID = 215})"> CreateLectureWithCLO(int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/CreateLectureWithCLO/{CLO_ID}</td>
+            <td><p>Used for a POST request to create a lecture in the database in a similiar format to the previous service call, however the URL expects a CLO_ID so it can link the lecture to a CLO</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditLecture", new { Lecture_Id = 430})"> EditLecture(Lecture lecture, int Lecture_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/EditLecture/{Lecture_Id}</td>
+            <td><p>Used for a PUT request to edit a lecture with a Lecture_Id that matches the provided one in the database with the provided lecture info in the body of the request. The body has a similiar format to the service for creating a lecture</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditLectureWithCLO", new { Lecture_Id = 430, CLO_ID = 215})"> EditLectureWithCLO(int Lecture_Id, int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/EditLectureWithCLO/{Lecture_Id}/{CLO_ID}</td>
+            <td><p>Used for a PUT request to edit a lecture with a Lecture_Id that matches the provided one in a similiar manner to the previous service call but also allows you to edit the link of the lecture provided to the CLO_ID argument</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteLecture", new { Lecture_Id = 430})"> DeleteLecture(int Lecture_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Lecture/DeleteLecture/{Lecture_Id}</td>
+            <td><p>Used for a DELETE Request to delete a Lecture that has a matching Lecture_Id to the provided one</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Deliver" asp-action="GetLectureCLORelation"> GetLectureCLORelation() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Deliver/GetLectureCLORelation</td>
+            <td><p>Returns a JSON for all the entries in the deliver table (The table that shows what CLOs each lecture delivers)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCLOsOfLecture", new { Lecture_Id = 430})"> GetCLOsOfLecture(int Lecture_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Deliver/GetCLOsOfLecture/{Lecture_Id}</td>
+            <td><p>Returns a JSON with entries for all the CLOs that a lecture delivers - Almost always 1 CLO</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetLecturesOfCLO", new { CLO_ID = 200})"> GetLecturesOfCLO(int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Deliver/GetLecturesOfCLO/{CLO_ID}</td>
+            <td><p>Returns a JSON with entries for all the Lectures that deliver a specific CLO that matches the CLO_ID passed in the URL</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("LinkLectureToCLO", new { Lecture_Id = 430, CLO_ID = 215})"> LinkLectureToCLO(int Lecture_Id, int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Deliver/LinkLectureToCLO/{Lecture_Id}/{CLO_Id}</td>
+            <td><p>Used for a POST request to introduce a link between a lecture and CLO according to the provided arguments int URL</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteLinkLectureToCLO", new { Lecture_Id = 430, CLO_ID = 215})"> DeleteLinkLectureToCLO(int Lecture_Id, int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Deliver/DeleteLinkLectureToCLO/{Lecture_Id}/{CLO_Id}</td>
+            <td><p>Used for a DELETE request to Delete a link between a lecture and CLO according to the provided arguments int URL</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="CLO" asp-action="GetCLOs"> GetCLOs() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetCLOs</td>
+            <td><p>Returns a JSON object for all entries in the CLO table</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCLOofId", new {CLO_ID = 215})"> GetCLOofId(int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetCLOofId/{CLO_ID}</td>
+            <td><p>Returns a JSON object for the CLO that has a matching CLO_ID to the passed on in the URL</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCLOsOfCourse", new {Course_Id = 65})"> GetCLOsOfCourse(int Course_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetCLOsOfCourse/{Course_Id}</td>
+            <td><p>Returns a JSON object that has all the CLOs a Course is delivering (Syllabus)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetAssessmentsCLOs", new {Course_Id = 65})"> GetAssessmentsCLOs(int Course_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetAssessmentsCLOs/{Course_Id}</td>
+            <td><p>Returns a JSON object that has all the CLOs a Course that have a Report_Id (Assesed CLO (Exam OR Assignment))</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetAssignmentsCLOs", new {Course_Id = 65})"> GetAssignmentsCLOs(int Course_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetAssignmentsCLOs/{Course_Id}</td>
+            <td><p>Returns a JSON object that has all the Assignments CLOs of a Course</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCLOsOfClass", new {CRN = "22011"})"> GetCLOsOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetCLOsOfClass/{CRN}</td>
+            <td><p>Returns a JSON object that has all the CLOs a Class is delivering (Section-Syllabus)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetCLOsOfReport", new {Report_Id = 60})"> GetCLOsOfReport(int Report_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/GetCLOsOfReport/{Report_Id}</td>
+            <td><p>Returns a JSON object with the CLO that a report with a matching Report_Id to the passed argument delivers</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="CLO" asp-action="CreateCLO"> CreateCLO(CLO clo) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/CreateCLO</td>
+            <td><p>Used for a POST request to add a CLO to the database. The CLO is passed in the body of the request with the following properties(COURSE_ID, REPORT_ID, DESCRIPTION)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditCLO", new {CLO_ID = 215})"> EditCLO(int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/EditCLO/{CLO_ID}</td>
+            <td><p>Used for a PUT request to edit the CLO with a matching CLO_ID to the provided argument. The CLO passed in the body has a similiar format to the create service</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteCLO", new {CLO_ID = 215})"> DeleteCLO(int CLO_ID) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/CLO/DeleteCLO/{CLO_ID}</td>
+            <td><p>Used for a DELETE request to delete the CLO with a matching CLO_ID to the provided argument</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Attendance" asp-action="GetAttendance"> GetAttendance() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetAttendance</td>
+            <td><p>Returns a detailed JSON object for all entries in the Attendance table --Takes a considerable time to compute (Not recommended for use)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetAttendanceOfLecture", new { lectureId = 521})"> GetAttendanceOfLecture(int lectureId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetAttendanceOfLecture/{lectureId}</td>
+            <td><p>Returns a JSON object for all the attendance entries of the specified lectureId. The object has the properties (CourseName, LectureTitle, CRN, TotalStudentRegistered [In the class of that lecture], LectureAttendanceCount [Number of the students that attended], StudentsAttended [A list of the students that attended])</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetAttendanceOfClass", new { CRN = "22041"})"> GetAttendanceOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetAttendanceOfClass/{CRN}</td>
+            <td><p>Returns a JSON that has a list of attendance entries - of a similiar format to the previous service call - that represents all the attendance entries of all the lectures already held of that class</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Attendance" asp-action="GetAttendanceCount"> GetAttendanceCount() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetAttendanceCount</td>
+            <td><p>Returns a JSON object for all the classes given indicating information about the class (CRN, COURSE_NAME, COURSE_CODE, SECTION_NUM) and for each student registered in the class a property that shows how many of the lectures of the class they attended so far out of a the total number of lectures that is also provided. The entries are Ordered from the student who skipped the most to the one who skipped the least</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetAttendanceCountInClass", new { CRN = "22041"})"> GetAttendanceCountInClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetAttendanceCountInClass/{CRN}</td>
+            <td><p>Returns a JSON object with an entry for every student registered in the class with properties that shows how many of the lectures of the class they attended so far out of a the total number of lectures that is also provided. The entries are Ordered from the student who skipped the most to the one who skipped the least</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetStudentAttendanceCount", new { StudentId = "201802461"})"> GetStudentAttendanceCount(string StudentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetStudentAttendanceCount/{StudentId}</td>
+            <td><p>Returns a JSON object with an entry for all the classes the student with the provided StudentId is registered in. For each entry there are properties that show information about the class and the attendance rate of that student in that class in a similiar format to the prvious service calls. The entries returned are ordered from the class where the students attnded the least of its lectures to the most attendance in a class</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetStudentAttendanceCountInClass", new { StudentId = "201802461", CRN = "22042"})"> GetStudentAttendanceCountInClass(string StudentId, string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/GetStudentAttendanceCountInClass/{StudentId}/{CRN}</td>
+            <td><p>Returns a JSON object for the classes and student with the provided arguments. the object has properties that show information about the attendance rate of the student in class in a similiar format to the prvious service calls. </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("RecordStudentAttendance", new { LectureId = 466, StudentId = "201802461"})"> RecordStudentAttendance(int LectureId, string StudentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/RecordStudentAttendance/{LectureId}/{StudentId}</td>
+            <td><p>Used for a POST request against the database to record the attendance of a student with the provided StudentId in a lecture with the provided LectureId</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteAttendanceRecord", new { LectureId = 466, StudentId = "201802461"})"> DeleteAttendanceRecord(int LectureId, string StudentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Attendance/DeleteAttendanceRecord/{LectureId}/{StudentId}</td>
+            <td><p>Used for a DELETE request against the database to delete the attendance record of a student with the provided StudentId and a lecture with the provided LectureId</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Grade" asp-action="GetGrades"> GetGrades() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGrades</td>
+            <td><p>Returns a JSON of all the grades in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesOfCourse", new { Course_Id = 68})"> GetGradesOfCourse(int Course_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesOfCourse/{Course_Id}</td>
+            <td><p>Returns a JSON object of the grade entreis in a course with the provided course_Id </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesOfClass", new { CRN = "22041"})"> GetGradesOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesOfClass/{CRN}</td>
+            <td><p>Returns a JSON object of the grade entreis in a specific class with the provided CRN </p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesOfReport", new { Report_Id = 60})"> GetGradesOfReport(int Report_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesOfReport/{Report_Id}</td>
+            <td><p>Returns a JSON object of the grade entreis that match the provided Report_Id. A report is a logical compilation of the set of grades of a certain assessment (Assignment or Exam)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesOfStudent", new { StudentId = "201802461"})"> GetGradesOfStudent(string StudentId) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesOfStudent/{StudentId}</td>
+            <td><p>Returns a JSON object of the grade entreis of all the grades that a student with a StudentId that matches the provided one has over all their courses</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesOfStudentInClass", new { StudentId = "201802461", CRN = "22042"})"> GetGradesOfStudentInClass(string StudentId, string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesOfStudentInClass/{StudentId}/{CRN}"</td>
+            <td><p>Returns a JSON object of the grade entreis of all the grades that a student with a StudentId that matches the provided one has in the specfic course with the CRN that matches the one provided</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesStatsOfCourse", new { Course_Id = 68})"> GetGradesStatsOfCourse(int Course_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesStatsOfCourse/{Course_Id}"</td>
+            <td><p>Returns a JSON object with stats (Max, Avg, Min, Stdv) of all the grades of the provided course (all sections of a course). A property with the Grade description is also provided</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesStatsOfClass", new { CRN = "22042"})"> GetGradesStatsOfClass(string CRN) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesStatsOfClass/{CRN}"</td>
+            <td><p>Returns a JSON object with stats (Max, Avg, Min, Stdv) of all the grades of the provided class (a specific section of a course). A property with the Grade description is also provided</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetGradesStatsOfReport", new { Report_Id = 60})"> GetGradesStatsOfReport(int Report_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetGradesStatsOfReport/{Report_Id}"</td>
+            <td><p>Returns a JSON object with stats (Max, Avg, Min, Stdv) of all the grades of the provided report (the set of grades for a certain assessment)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Grade" asp-action="CreateGrade"> CreateGrade() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/CreateGrade</td>
+            <td><p>Used for a POST request to create a grade. Grade is passed in the body of the request and has the following properties (Report_Id [Must exist as a report and have a link to a CLO beforebeing accepted here], StudentId, Grade_Value, Grade_Desc)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditGrade", new { grade_Id = 180})"> EditGrade(int grade_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/EditGrade/{grade_Id}"</td>
+            <td><p>Used for a PUT request to edit a grade. The updated grade properties are passed in the body of the request and has similiar format to the create service call</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteGrade", new { grade_Id = 180})"> DeleteGrade(int grade_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/DeleteGrade/{grade_Id}"</td>
+            <td><p>Used for a DELETE request to delete a grade that have a grade_Id that matches the provided grade_Id in the URL</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Report" asp-action="GetReports"> GetReports() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Report/GetReports</td>
+            <td><p>Returns a JSON of all the reports in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("GetReportOfId", new { Report_Id = 60})"> GetReportOfId(int Report_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/GetReportOfId/{Report_Id}"</td>
+            <td><p>Returns a JSON of the Report that has a Report_Id that matches the one passed in the URL</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Report" asp-action="GetLastReport"> GetLastReport() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Report/GetLastReport</td>
+            <td><p>Returns a JSON of the last created report</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Report" asp-action="CreateReport"> CreateReport() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Report/CreateReport</td>
+            <td><p>Used for POST request to create a report. No information need to be passed. A report will be created with a Report_Date equals to the moment it was created in. The response of this request is a JSON object that represents the created report</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteReport", new { Report_Id = 60})"> DeleteReport(int Report_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Grade/DeleteReport/{Report_Id}"</td>
+            <td><p>Used for a DELETE request to delete a report that matches the passed Report_Id in the URL</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Team" asp-action="GetTeams"> GetTeams() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Team/GetTeams</td>
+            <td><p>Returns a JSON of all the teams in the database</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchTeam", new { searchTerm = "cloasis team"})"> FetchTeam(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Team/FetchTeam/{searchTerm}</td>
+            <td><p>Returns a JSON of the team/teams that has/have a property that matches the search term (TEAM_ID, COURSE_NAME, COURSE_CODE, TEAM_NAME, CREATION_DATE)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Team" asp-action="CreateTeam"> CreateTeam(Team team) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Team/CreateTeam</td>
+            <td><p>Used for a POST request against the database to add a team to the teams table; team is taken from the Body of the request and has the following attributes (CRN, TEAM_NAME, [CREATION_DATE] optional and will be set to NOW if not provided)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditTeam", new { Team_Id = 9})"> EditTeam(Team team, int Team_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Team/EditTeam/{Team_Id}</td>
+            <td><p>Used for a PUT request against the database to edit a team in the teams table; team is taken from the Body of the request and has the following attributes (CRN, TEAM_NAME, [CREATION_DATE] optional and will be set to NOW if not provided)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteTeam", new { teamId = 9})"> DeleteTeam(int Team_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Team/DeleteTeam/{teamId}</td>
+            <td><p>Used for a DELETE request against the database to delete the team with the specfied Team_Id</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Project" asp-action="GetProjects"> GetProjects() </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Project/GetProjects</td>
+            <td><p>Returns a JSON of all the projects in the database with the teams working on them if available</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("FetchProject", new { searchTerm = 15})"> FetchProject(string searchTerm) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Project/FetchProject/{searchTerm}</td>
+            <td><p>Returns a JSON of the project/projects that has/have a property that matches the search term (PROJECT_ID, TEAM_NAME, PROJECT_TITLE)</p></td>
+        </tr>
+        <tr>
+            <td><a asp-controller="Project" asp-action="CreateProject"> CreateProject(Project project) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Project/CreateProject</td>
+            <td><p>Used for a POST request against the database to add a project to the projects table; project is taken from the Body of the request and has the following attributes (TEAM {Name of Team}, Project_Title, Project_Desc)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("EditProject", new { ProjectId = 15})"> EditProject(Project project, int Project_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Project/EditProject/{ProjectId}</td>
+            <td><p>Used for a PUT request against the database to edit a project in the projects table; project is taken from the Body of the request and has the following attributes (TEAM {Name of Team}, Project_Title, Project_Desc)</p></td>
+        </tr>
+        <tr>
+            <td><a href="@Url.RouteUrl("DeleteProject", new { ProjectId = 15})"> DeleteProject(int Project_Id) </a></td>
+            <td>https://cloasisapi.azurewebsites.net/Project/DeleteProject/{ProjectId}</td>
+            <td><p>Used for a DELETE request against the database to delete the project with the specfied Project_Id</p></td>
+        </tr>
+
+
+    </table>
+</div>
